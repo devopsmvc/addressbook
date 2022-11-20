@@ -1,13 +1,22 @@
 node{
     stage('code checkout'){
+        echo 'checking out the code'
         git 'https://github.com/devopsmvc/addressbook.git'
     }
-    
-    stage('clean.. compile... test... package...'){
-        sh 'mvn clean package'
+
+    stage('workspace stage'){
+        echo 'cleaning the workspace'
+        sh 'mvn clean'
     }
-    
-    stage('deploy to tomcat'){
-        deploy adapters: [tomcat9(credentialsId: 'tomcat-creds', path: '', url: 'http://3.110.165.241:8081/')], contextPath: 'addressbook1', war: '**/*.war'
+
+    stage('complie, test, package'){
+        echo 'Compiling, testing and packaging source code'
+        sh 'mvn package'
     }
+
+    stage('deploy'){
+        echo 'deploy the address book to tomcat9'
+        deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://3.110.102.147:8081/')], contextPath: 'addressbook', war: '**/*.war'
+    }
+
 }
