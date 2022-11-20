@@ -1,6 +1,6 @@
 node{
     stage('code checkout'){
-        git 'https://github.com/shubhamkushwah123/addressbook-demo.git'
+        git 'https://github.com/devopsmvc/addressbook.git'
     }
     
     stage('clean.. compile... test... package...'){
@@ -8,6 +8,6 @@ node{
     }
     
     stage('deploy to tomcat'){
-        deploy adapters: [tomcat9(credentialsId: 'tomcat-creds', path: '', url: 'http://3.92.185.25:8085/')], contextPath: 'addressbook', war: '**/*.war'
+        deploy adapters: [tomcat9(credentialsId: 'tomcat-creds', path: '', url: 'http://43.204.212.207:8081/')], contextPath: 'addressbook', war: '**/*.war'
     }
 }
