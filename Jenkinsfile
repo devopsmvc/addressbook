@@ -6,7 +6,7 @@ node{
 
     stage('Compile'){
         echo 'Compling Code'
-        sh 'mvn complie'
+        sh 'mvn compile'
     }
 
     stage('Testing the Code'){
