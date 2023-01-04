@@ -1,4 +1,5 @@
-node{
+node("slave")
+{
     stage('code checkout'){
         echo 'checking out the code'
         git 'https://github.com/devopsmvc/addressbook.git'
@@ -26,7 +27,7 @@ node{
 
     stage('deploy'){
         echo 'deploy the address book to tomcat9'
-        deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://3.110.29.196:8081/')], contextPath: 'addressbook-pipeline', war: '**/*.war'
+        deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://13.127.190.20:8081/')], contextPath: 'addressbook-pipeline', war: '**/*.war'
     }
 
 }
